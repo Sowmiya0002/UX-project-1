@@ -7,7 +7,7 @@ model = genai.GenerativeModel("gemini-2.0-flash")
 
 # --- Streamlit UI ---
 st.set_page_config(page_title="UX Competitive Audit", layout="wide")
-st.title("🎯 UX Competitive Feature Comparator (AI-powered)")
+st.title("UX Competitive Feature Comparator (AI-powered)")
 
 st.markdown("""
 Provide a brief description of your product and the competitor’s website URL.  
@@ -18,7 +18,7 @@ with st.form("audit_form"):
     your_product = st.text_area("🟦 Your Product Description / Feature List", height=200)
     competitor_url = st.text_input("🟥 Competitor Website URL")
 
-    submit = st.form_submit_button("Generate UX Audit")
+    submit = st.form_submit_button("Compare features")
 
 # --- Gemini Analysis ---
 if submit:
