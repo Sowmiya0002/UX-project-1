@@ -1,31 +1,51 @@
 import streamlit as st
 import google.generativeai as genai
+from streamlit_extras.add_vertical_space import add_vertical_space
 
 # --- Gemini API Setup ---
 genai.configure(api_key="AIzaSyCYZdy-q6TuvRFJP4XN8LSqWQsr4Yehwpg")
 model = genai.GenerativeModel("gemini-2.0-flash")
 
-# --- Streamlit UI ---
+# --- Page Config ---
 st.set_page_config(page_title="UX Competitive Audit", layout="wide")
-st.title("UX Competitive Feature Comparator (AI-powered)")
 
+# --- Custom Banner ---
 st.markdown("""
-Provide a brief description of your product and the competitor’s website URL.  
-This AI tool simulates a competitive UX audit and generates designer-friendly insights.
+    <div style="background-color:#0E1117;padding:30px;border-radius:10px;margin-bottom:20px">
+        <h1 style="color:#FFFFFF;text-align:center;">🔍 UX Competitive Feature Comparator (AI-powered)</h1>
+        <p style="color:#AAAAAA;text-align:center;font-size:18px;">
+            Compare product features and discover actionable UX insights with AI.
+        </p>
+    </div>
+""", unsafe_allow_html=True)
+
+# --- Intro Section ---
+st.markdown("""
+### 📝 What Does This Tool Do?
+
+This tool helps UX designers and product teams perform a quick competitive feature comparison.  
+Just enter your product details and a competitor's URL — the AI will simulate an audit and provide key insights!
+
+---
 """)
 
+# --- Input Form ---
 with st.form("audit_form"):
-    your_product = st.text_area("🟦 Your Product Description / Feature List", height=200)
-    competitor_url = st.text_input("🟥 Competitor Website URL")
+    st.markdown("#### 🔷 Your Product Description / Feature List")
+    your_product = st.text_area("Describe your product or list its main features:", height=180)
 
-    submit = st.form_submit_button("Compare features")
+    st.markdown("#### 🔴 Competitor Website URL")
+    competitor_url = st.text_input("Paste the competitor’s website URL:")
+
+    add_vertical_space(1)
+    submit = st.form_submit_button("🚀 Generate UX Report")
 
 # --- Gemini Analysis ---
 if submit:
     if not your_product or not competitor_url:
-        st.warning("Please provide both your product info and the competitor's URL.")
+        st.warning("⚠️ Please provide both your product information and the competitor’s URL.")
     else:
-        with st.spinner("Generating UX insights..."):
+        with st.spinner("🔍 Analyzing UX insights, please wait..."):
             prompt = f"""
 You are a senior UX designer conducting a competitive audit.
 
@@ -49,7 +69,16 @@ Format the output as a UX Designer's Insight Report with sections:
 """
 
             response = model.generate_content(prompt)
-            result = response.text  # ✅ Corrected here
+            result = response.text
 
         st.markdown("## 📄 UX Designer’s Competitive Insight Report")
+        st.markdown("---")
         st.markdown(result)
+
+# --- Footer ---
+st.markdown("""
+---
+<div style='text-align:center; color:gray; font-size:13px;'>
+    Made with ❤️ by UX AI Tools | Powered by Streamlit + Gemini
+</div>
+""", unsafe_allow_html=True)
