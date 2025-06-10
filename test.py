@@ -12,7 +12,7 @@ st.set_page_config(page_title="UX Competitive Audit", layout="wide")
 # --- Custom Banner ---
 st.markdown("""
     <div style="background-color:#0E1117;padding:30px;border-radius:10px;margin-bottom:20px">
-        <h1 style="color:#FFFFFF;text-align:center;">🔍 UX Competitive Feature Comparator (AI-powered)</h1>
+        <h1 style="color:#FFFFFF;text-align:center;"> UX Competitive Feature Comparator (AI-powered)</h1>
         <p style="color:#AAAAAA;text-align:center;font-size:18px;">
             Compare product features and discover actionable UX insights with AI.
         </p>
@@ -21,7 +21,7 @@ st.markdown("""
 
 # --- Intro Section ---
 st.markdown("""
-### 📝 What Does This Tool Do?
+###  What Does This Tool Do?
 
 This tool helps UX designers and product teams perform a quick competitive feature comparison.  
 Just enter your product details and a competitor's URL — the AI will simulate an audit and provide key insights!
@@ -79,6 +79,6 @@ Format the output as a UX Designer's Insight Report with sections:
 st.markdown("""
 ---
 <div style='text-align:center; color:gray; font-size:13px;'>
-    Made with ❤️ by UX AI Tools | Powered by Streamlit + Gemini
+    Made by Sowmiya | SNS Ihub
 </div>
 """, unsafe_allow_html=True)
